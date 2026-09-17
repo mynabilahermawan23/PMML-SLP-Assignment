@@ -17,13 +17,12 @@ Model SLP dibangun mengikuti rumus yang sama seperti perhitungan manual di Googl
 - Python
 - NumPy
 - Matplotlib
-- SciPy
 
 ## Cara Menjalankan
 
 1. Install library yang dibutuhkan:
    ```
-   pip install numpy matplotlib scipy
+   pip install numpy matplotlib
    ```
 2. Pastikan file dataset (`iris_slp_data.csv`) berada satu folder dengan `slp_iris.py`.
 3. Jalankan script:
