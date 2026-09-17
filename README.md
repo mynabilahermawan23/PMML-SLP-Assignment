@@ -41,8 +41,8 @@ Program Studi: Magister Kecerdasan Artifisial
 
 Afiahayati. *Linear Classifier - Single Layer Perceptron*. Materi Kuliah, Departemen Ilmu Komputer dan Elektronika, Universitas Gadjah Mada.
 
-Fisher, R. A. (1936). The Use of Multiple Measurements in Taxonomic Problems. Annals of Eugenics, 7(2), 179-188. (Sumber asli dataset Iris)
+Fisher, R. A. (1936). The Use of Multiple Measurements in Taxonomic Problems. Annals of Eugenics, 7(2), 179-188. 
 
-UCI Machine Learning. Iris Species Dataset. Kaggle. https://www.kaggle.com/datasets/uciml/iris (Sumber dataset yang digunakan pada tugas ini)
+UCI Machine Learning. Iris Species Dataset. Kaggle. https://www.kaggle.com/datasets/uciml/iris 
 
 Scikit-learn Developers. *Perceptron - Scikit-learn Documentation*. https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html
