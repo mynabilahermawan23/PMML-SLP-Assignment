@@ -23,7 +23,6 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-from scipy.interpolate import make_interp_spline
 
 DATA_PATH = "iris_slp_data.csv"
 LEARNING_RATE = 0.1
@@ -152,18 +151,12 @@ RESULT_DIR = "result"
 os.makedirs(RESULT_DIR, exist_ok=True)
 
 
-def _smooth_curve(epochs, values, n_points=300):
-    """Return (x, y) for a smooth spline through (epochs, values)."""
-    x_smooth = np.linspace(min(epochs), max(epochs), n_points)
-    spline = make_interp_spline(epochs, values, k=3)  # cubic spline
-    return x_smooth, spline(x_smooth)
-
-
 def _plot_pair(epochs, train_vals, val_vals, title, ylabel, filename_prefix):
-    # ---- straight-line version ----
     plt.figure(figsize=(7, 5))
+
     plt.plot(epochs, train_vals, marker="o", label=f"Training {ylabel}")
     plt.plot(epochs, val_vals, marker="o", label=f"Validation {ylabel}")
+
     plt.title(title)
     plt.xlabel("Epoch")
     plt.ylabel(ylabel)
@@ -171,26 +164,11 @@ def _plot_pair(epochs, train_vals, val_vals, title, ylabel, filename_prefix):
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig(os.path.join(RESULT_DIR, f"{filename_prefix}_straight.png"), dpi=150)
-    plt.close()
 
-    # ---- smooth-curve version (Excel-like) ----
-    x_train, y_train = _smooth_curve(epochs, train_vals)
-    x_val, y_val = _smooth_curve(epochs, val_vals)
-
-    plt.figure(figsize=(7, 5))
-    plt.plot(x_train, y_train, color="#1f77b4", label=f"Training {ylabel}")
-    plt.plot(x_val, y_val, color="#ff7f0e", label=f"Validation {ylabel}")
-    plt.plot(epochs, train_vals, "o", color="#1f77b4")
-    plt.plot(epochs, val_vals, "o", color="#ff7f0e")
-    plt.title(title)
-    plt.xlabel("Epoch")
-    plt.ylabel(ylabel)
-    plt.xticks(epochs)
-    plt.legend()
-    plt.grid(True, alpha=0.3)
-    plt.tight_layout()
-    plt.savefig(os.path.join(RESULT_DIR, f"{filename_prefix}_smooth.png"), dpi=150)
+    plt.savefig(
+        os.path.join(RESULT_DIR, f"{filename_prefix}.png"),
+        dpi=150
+    )
     plt.close()
 
 
@@ -203,8 +181,8 @@ def plot_charts(history):
     _plot_pair(epochs, history["train_loss"], history["val_loss"],
                "Loss (Avg Sum Square Error) per Epoch", "Avg Sum Square Error", "loss_chart")
 
-    print(f"\nSaved to '{RESULT_DIR}/': accuracy_chart_straight.png, accuracy_chart_smooth.png, "
-          "loss_chart_straight.png, loss_chart_smooth.png")
+    print(f"\nSaved to '{RESULT_DIR}/': accuracy_chart_straight.png, "
+          "loss_chart_straight.png")
 
 
 if __name__ == "__main__":
